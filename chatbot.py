@@ -26,6 +26,7 @@ st.header("Il tuo assistente di diritto costituzionale")
 
 st.image("Chatbot.webp", width=500)
 
+documento = "REAL CHATBOT/Costituzione_italiana.pdf"
 
 with st.sidebar:
     st.title("Il mio documento")
