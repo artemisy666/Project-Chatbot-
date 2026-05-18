@@ -22,7 +22,7 @@ st.markdown(
     """,
     unsafe_allow_html=True)
 
-st.header("Assistenza online")
+st.header("Il tuo assistente di diritto costituzionale")
 
 st.image("Chatbot.webp", width=500)
 
@@ -59,7 +59,7 @@ if documento is not None:
         return "\n\n".join([documento.page_content for documento in documenti])
     prompt = ChatPromptTemplate.from_messages([
         ("system", 
-         '''Sei un assistente virtuale. 
+         '''Sei un esperto di diritto costituzionale. 
     Usa il contesto fornito per rispondere alla domanda in modo conciso. 
     Non accedere a informazioni esterne, come Internet. 
     Se non conosci la risposta, dì semplicemente 'Non lo so'. 
