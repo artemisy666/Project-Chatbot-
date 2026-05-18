@@ -9,6 +9,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
+st.set_page_config(page_title= "Chatbot",
+                   page_icon=":classical_building:")
 st.markdown(
     """
     <style>
