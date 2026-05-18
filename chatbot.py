@@ -2,6 +2,7 @@
 
 import streamlit as st
 import pdfplumber
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
@@ -31,12 +32,15 @@ documento = "Costituzione_italiana.pdf"
 openai_api_key=st.secrets["OPENAI_API_KEY"]
 
 if documento is not None:
-    with pdfplumber.open(documento) as pdf:
-        # st.write(f"Pagine totali: {len(pdf.pages)} - Comincio la scansione...")
-        testo = ""
-        for pagina in pdf.pages:
-            testo = testo + pagina.extract_text() + "\n"
-            # testo += pagina.extract_text() + "\n"
+    @st.cache_data(show_spinner="Sto leggendo il pdf...")
+    def estrai_testo_pdf(documento: str) -> str:
+        with pdfplumber.open(documento) as pdf:
+             testo = ""
+             for pagina in pdf.pages:
+                 testo = testo + pagina.extract_text() + "\n"
+        return testo.strip()
+    testo=estrai_testo_pdf(documento)
+          
     # st.write(testo)
     taglierina = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n", ". ", " "],
