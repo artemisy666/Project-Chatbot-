@@ -26,13 +26,9 @@ st.header("Il tuo assistente di diritto costituzionale")
 
 st.image("Chatbot.webp", width=500)
 
-documento = "REAL CHATBOT/Costituzione_italiana.pdf"
+documento = "Costituzione_italiana.pdf"
 
 openai_api_key=st.secrets["OPENAI_API_KEY"]
-
-with st.sidebar:
-    st.title("Il mio documento")
-    documento = st.file_uploader("Carica il tuo pdf", type=["pdf"])
 
 if documento is not None:
     with pdfplumber.open(documento) as pdf:
