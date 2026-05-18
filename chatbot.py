@@ -51,6 +51,9 @@ if documento is not None:
         openai_api_key=st.secrets["OPENAI_API_KEY"])
     # st.write("Embedding recuperati!")
     vettori = FAISS.from_texts(frammenti, embedding=embeddings)
+    def invia():
+        st.session_state.domanda_inviata = st.session_state.domanda_utente
+        st.session_state.domanda_utente = ""
     domanda_utente = st.text_input("Fai una domanda sul documento caricato:")
     def formatta_documento(documenti):
         return "\n\n".join([documento.page_content for documento in documenti])
